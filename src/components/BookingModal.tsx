@@ -1,14 +1,33 @@
 "use client";
 
-import React, { useState } from "react";
-import { X, Calendar, Wrench, Send, CheckCircle2 } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { X, Calendar, Send } from "lucide-react";
 
 interface BookingModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
+export default function BookingModal({
+  isOpen: externalIsOpen,
+  onClose: externalOnClose,
+}: BookingModalProps) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpen = () => setInternalIsOpen(true);
+    window.addEventListener("open-booking", handleOpen);
+    return () => window.removeEventListener("open-booking", handleOpen);
+  }, []);
+
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
+  const handleClose = () => {
+    if (externalOnClose) {
+      externalOnClose();
+    }
+    setInternalIsOpen(false);
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -41,7 +60,7 @@ Halo DispenserFix, saya ingin booking jadwal service teknisi dengan data di atas
       message
     )}`;
     window.open(waUrl, "_blank");
-    onClose();
+    handleClose();
   };
 
   return (
@@ -62,7 +81,7 @@ Halo DispenserFix, saya ingin booking jadwal service teknisi dengan data di atas
           </div>
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             className="p-1.5 rounded-full text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
           >
             <X className="w-5 h-5" />

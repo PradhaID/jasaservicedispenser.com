@@ -14,10 +14,10 @@ import {
 } from "lucide-react";
 
 interface HeroProps {
-  onOpenBooking: () => void;
+  onOpenBooking?: () => void;
 }
 
-export default function Hero({ onOpenBooking }: HeroProps) {
+export default function Hero({ onOpenBooking }: HeroProps = {}) {
   const waUrl =
     "https://wa.me/6281234567890?text=Halo%20DispenserFix,%20saya%20mau%20konsultasi%20service%20dispenser.%20Mohon%20info%20ketersediaan%20teknisi.";
 
@@ -89,7 +89,13 @@ export default function Hero({ onOpenBooking }: HeroProps) {
 
               <button
                 type="button"
-                onClick={onOpenBooking}
+                onClick={() => {
+                  if (onOpenBooking) {
+                    onOpenBooking();
+                  } else if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("open-booking"));
+                  }
+                }}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-medium text-base transition-all duration-200 backdrop-blur-sm hover:border-white/30 cursor-pointer"
               >
                 <Calendar className="w-5 h-5 text-cyan-300" />

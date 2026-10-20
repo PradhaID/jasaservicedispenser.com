@@ -1,6 +1,3 @@
-"use client";
-
-import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ProblemSection from "@/components/ProblemSection";
@@ -18,16 +15,14 @@ import BookingModal from "@/components/BookingModal";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Header & Navigation */}
-      <Navbar onOpenBooking={() => setIsBookingOpen(true)} />
+      <Navbar />
 
       <main className="flex-1">
         {/* Hero Section */}
-        <Hero onOpenBooking={() => setIsBookingOpen(true)} />
+        <Hero />
 
         {/* Diagnosa Masalah Dispenser */}
         <ProblemSection />
@@ -64,10 +59,7 @@ export default function Home() {
       <Footer />
 
       {/* Interactive Booking Modal */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-      />
+      <BookingModal />
 
       {/* Floating WhatsApp Quick Action */}
       <FloatingWhatsApp />
