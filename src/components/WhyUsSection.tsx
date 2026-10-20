@@ -13,37 +13,37 @@ import {
 export default function WhyUsSection() {
   const reasons = [
     {
-      icon: <Wrench className="w-7 h-7 text-cyan-400" />,
+      icon: <Wrench className="w-5 h-5 text-cyan-400 shrink-0" />,
       title: "Teknisi Berpengalaman",
       description:
         "Ditangani langsung oleh teknisi ahli yang berpengalaman bertahun-tahun di bidang service dispenser berbagai tipe dan merek.",
     },
     {
-      icon: <Zap className="w-7 h-7 text-cyan-400" />,
+      icon: <Zap className="w-5 h-5 text-cyan-400 shrink-0" />,
       title: "Pengerjaan Cepat",
       description:
         "Respon cepat dan penanganan efisien. Kami mengupayakan perbaikan selesai pada hari yang sama di lokasi Anda.",
     },
     {
-      icon: <BadgePercent className="w-7 h-7 text-cyan-400" />,
+      icon: <BadgePercent className="w-5 h-5 text-cyan-400 shrink-0" />,
       title: "Harga Transparan",
       description:
         "Estimasi biaya disampaikan secara jujur sebelum pengerjaan dimulai. Bebas dari biaya tersembunyi yang merugikan.",
     },
     {
-      icon: <Cpu className="w-7 h-7 text-cyan-400" />,
+      icon: <Cpu className="w-5 h-5 text-cyan-400 shrink-0" />,
       title: "Sparepart Original",
       description:
         "Menggunakan suku cadang pengganti yang berkualitas, original, dan presisi sesuai dengan tipe dispenser Anda.",
     },
     {
-      icon: <MapPin className="w-7 h-7 text-cyan-400" />,
+      icon: <MapPin className="w-5 h-5 text-cyan-400 shrink-0" />,
       title: "Panggilan ke Lokasi",
       description:
         "Praktis tanpa repot membawa dispenser keluar. Teknisi kami siap datang ke rumah, kantor, atau tempat usaha Anda.",
     },
     {
-      icon: <ShieldCheck className="w-7 h-7 text-cyan-400" />,
+      icon: <ShieldCheck className="w-5 h-5 text-cyan-400 shrink-0" />,
       title: "Garansi Service",
       description:
         "Kenyamanan Anda adalah prioritas. Kami memberikan garansi service dan jaminan perbaikan ulang jika ada kendala.",
@@ -53,7 +53,7 @@ export default function WhyUsSection() {
   return (
     <section
       id="tentang-kami"
-      className="py-16 sm:py-24 bg-[#0c2340] text-white relative overflow-hidden"
+      className="py-16 sm:py-20 bg-[#0c2340] text-white relative overflow-hidden"
     >
       {/* Decorative background glows */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -61,7 +61,7 @@ export default function WhyUsSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="text-xs font-bold tracking-wider text-cyan-400 uppercase mb-2 block">
             KENAPA MEMILIH KAMI?
           </span>
@@ -75,19 +75,24 @@ export default function WhyUsSection() {
         </div>
 
         {/* 6 Grid Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {reasons.map((item, idx) => (
             <div
               key={idx}
-              className="group p-6 sm:p-7 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all duration-300 shadow-lg text-left"
+              className="group p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all duration-300 shadow-lg text-left"
             >
-              <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-cyan-500/25 transition-transform duration-300">
-                {item.icon}
+              {/* Header: Icon badge & Title inline */}
+              <div className="flex items-center gap-3.5 mb-3">
+                <div className="w-11 h-11 rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/25 transition-transform duration-300">
+                  {item.icon}
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                  {item.title}
+                </h3>
               </div>
-              <h3 className="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+
+              {/* Description below */}
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pl-0.5">
                 {item.description}
               </p>
             </div>
