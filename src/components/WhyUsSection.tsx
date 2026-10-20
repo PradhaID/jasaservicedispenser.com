@@ -58,7 +58,7 @@ export default function WhyUsSection() {
   return (
     <section
       id="tentang-kami"
-      className="py-16 sm:py-20 bg-[#0c2340] text-white relative overflow-hidden"
+      className="py-14 sm:py-20 bg-[#0c2340] text-white relative overflow-hidden"
     >
       {/* Decorative background glows */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -66,40 +66,40 @@ export default function WhyUsSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <span className="text-xs font-bold tracking-wider text-cyan-400 uppercase mb-2 block">
             KENAPA MEMILIH KAMI?
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
             Alasan Memilih Kami
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="mt-2.5 sm:mt-3 text-xs sm:text-base text-slate-300 leading-relaxed">
             Komitmen kami adalah memberikan rasa aman, kualitas kerja terbaik,
             dan kepuasan maksimal bagi setiap pelanggan.
           </p>
         </div>
 
-        {/* 6 Grid Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        {/* 6 Cards: 2 Columns on Mobile (2x3), 3 Columns on Desktop */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6">
           {reasons.map((item, idx) => {
             const IconComponent = item.icon;
             return (
               <div
                 key={idx}
-                className="group p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all duration-300 shadow-lg text-left"
+                className="group p-3.5 sm:p-5 lg:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all duration-300 shadow-md text-left flex flex-col justify-start"
               >
-                {/* Header: Icon badge & Title strictly inline */}
-                <div className="flex items-center gap-3.5 mb-3">
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/25 transition-transform duration-300">
-                    <IconComponent className="w-5 h-5 text-cyan-400" />
+                {/* Header: Icon badge & Title inline */}
+                <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-2.5">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/25 transition-transform duration-300">
+                    <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors leading-tight">
+                  <h3 className="text-xs sm:text-base lg:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
                     {item.title}
                   </h3>
                 </div>
 
                 {/* Description below */}
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <p className="text-[11px] sm:text-xs lg:text-sm text-slate-300 leading-relaxed">
                   {item.description}
                 </p>
               </div>
