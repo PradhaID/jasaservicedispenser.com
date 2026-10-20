@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   Wrench,
@@ -8,48 +6,55 @@ import {
   Cpu,
   MapPin,
   ShieldCheck,
+  type LucideIcon,
 } from "lucide-react";
 
-export default function WhyUsSection() {
-  const reasons = [
-    {
-      icon: <Wrench className="w-5 h-5 text-cyan-400 shrink-0" />,
-      title: "Teknisi Berpengalaman",
-      description:
-        "Ditangani langsung oleh teknisi ahli yang berpengalaman bertahun-tahun di bidang service dispenser berbagai tipe dan merek.",
-    },
-    {
-      icon: <Zap className="w-5 h-5 text-cyan-400 shrink-0" />,
-      title: "Pengerjaan Cepat",
-      description:
-        "Respon cepat dan penanganan efisien. Kami mengupayakan perbaikan selesai pada hari yang sama di lokasi Anda.",
-    },
-    {
-      icon: <BadgePercent className="w-5 h-5 text-cyan-400 shrink-0" />,
-      title: "Harga Transparan",
-      description:
-        "Estimasi biaya disampaikan secara jujur sebelum pengerjaan dimulai. Bebas dari biaya tersembunyi yang merugikan.",
-    },
-    {
-      icon: <Cpu className="w-5 h-5 text-cyan-400 shrink-0" />,
-      title: "Sparepart Original",
-      description:
-        "Menggunakan suku cadang pengganti yang berkualitas, original, dan presisi sesuai dengan tipe dispenser Anda.",
-    },
-    {
-      icon: <MapPin className="w-5 h-5 text-cyan-400 shrink-0" />,
-      title: "Panggilan ke Lokasi",
-      description:
-        "Praktis tanpa repot membawa dispenser keluar. Teknisi kami siap datang ke rumah, kantor, atau tempat usaha Anda.",
-    },
-    {
-      icon: <ShieldCheck className="w-5 h-5 text-cyan-400 shrink-0" />,
-      title: "Garansi Service",
-      description:
-        "Kenyamanan Anda adalah prioritas. Kami memberikan garansi service dan jaminan perbaikan ulang jika ada kendala.",
-    },
-  ];
+interface ReasonItem {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
 
+const reasons: ReasonItem[] = [
+  {
+    icon: Wrench,
+    title: "Teknisi Berpengalaman",
+    description:
+      "Ditangani langsung oleh teknisi ahli yang berpengalaman bertahun-tahun di bidang service dispenser berbagai tipe dan merek.",
+  },
+  {
+    icon: Zap,
+    title: "Pengerjaan Cepat",
+    description:
+      "Respon cepat dan penanganan efisien. Kami mengupayakan perbaikan selesai pada hari yang sama di lokasi Anda.",
+  },
+  {
+    icon: BadgePercent,
+    title: "Harga Transparan",
+    description:
+      "Estimasi biaya disampaikan secara jujur sebelum pengerjaan dimulai. Bebas dari biaya tersembunyi yang merugikan.",
+  },
+  {
+    icon: Cpu,
+    title: "Sparepart Original",
+    description:
+      "Menggunakan suku cadang pengganti yang berkualitas, original, dan presisi sesuai dengan tipe dispenser Anda.",
+  },
+  {
+    icon: MapPin,
+    title: "Panggilan ke Lokasi",
+    description:
+      "Praktis tanpa repot membawa dispenser keluar. Teknisi kami siap datang ke rumah, kantor, atau tempat usaha Anda.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Garansi Service",
+    description:
+      "Kenyamanan Anda adalah prioritas. Kami memberikan garansi service dan jaminan perbaikan ulang jika ada kendala.",
+  },
+];
+
+export default function WhyUsSection() {
   return (
     <section
       id="tentang-kami"
@@ -76,27 +81,30 @@ export default function WhyUsSection() {
 
         {/* 6 Grid Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          {reasons.map((item, idx) => (
-            <div
-              key={idx}
-              className="group p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all duration-300 shadow-lg text-left"
-            >
-              {/* Header: Icon badge & Title inline */}
-              <div className="flex items-center gap-3.5 mb-3">
-                <div className="w-11 h-11 rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/25 transition-transform duration-300">
-                  {item.icon}
+          {reasons.map((item, idx) => {
+            const IconComponent = item.icon;
+            return (
+              <div
+                key={idx}
+                className="group p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-white/[0.08] transition-all duration-300 shadow-lg text-left"
+              >
+                {/* Header: Icon badge & Title strictly inline */}
+                <div className="flex items-center gap-3.5 mb-3">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/25 transition-transform duration-300">
+                    <IconComponent className="w-5 h-5 text-cyan-400" />
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors leading-tight">
+                    {item.title}
+                  </h3>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
-                  {item.title}
-                </h3>
-              </div>
 
-              {/* Description below */}
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pl-0.5">
-                {item.description}
-              </p>
-            </div>
-          ))}
+                {/* Description below */}
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
